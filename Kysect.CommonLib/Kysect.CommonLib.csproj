@@ -4,6 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Version>0.0.1</Version>
+    <Authors>Kysect</Authors>
+    <Company>Kysect</Company>
+    <Description>Common lib for Kysect projects.</Description>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/kysect/Kysect.CommonLib</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
