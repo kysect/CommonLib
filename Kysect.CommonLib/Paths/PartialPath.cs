@@ -3,7 +3,8 @@
 public class PartialPath
 {
     public string Root { get; }
-    public string Path { get; }
+    public string Value { get; }
+    public string FullPath { get; }
 
     public PartialPath(string root, string fullPath)
     {
@@ -14,16 +15,17 @@ public class PartialPath
             throw new ArgumentException("Full path should start with root path");
 
         Root = root;
+        FullPath = fullPath;
 
         if (root == fullPath)
-            Path = string.Empty;
+            Value = string.Empty;
         else if (string.IsNullOrWhiteSpace(root))
-            Path = fullPath;
+            Value = fullPath;
         else
         {
-            Path = fullPath.Substring(root.Length);
-            if (Path[0] == System.IO.Path.DirectorySeparatorChar)
-                Path = Path.Remove(0, 1);
+            Value = fullPath.Substring(root.Length);
+            if (Value[0] == Path.DirectorySeparatorChar)
+                Value = Value.Remove(0, 1);
         }
     }
 
@@ -36,16 +38,16 @@ public class PartialPath
 
     public bool Equals(PartialPath other)
     {
-        return Path.Equals(other.Path);
+        return Value.Equals(other.Value);
     }
 
     public override int GetHashCode()
     {
-        return Path.GetHashCode();
+        return Value.GetHashCode();
     }
 
     public override string ToString()
     {
-        return Path;
+        return Value;
     }
 }
