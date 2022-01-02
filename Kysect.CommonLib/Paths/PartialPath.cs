@@ -11,7 +11,7 @@ public class PartialPath
         ArgumentNullException.ThrowIfNull(root);
         ArgumentNullException.ThrowIfNull(fullPath);
 
-        if (fullPath.StartsWith(root))
+        if (!fullPath.StartsWith(root))
             throw new ArgumentException("Full path should start with root path");
 
         Root = root;
