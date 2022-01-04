@@ -3,7 +3,7 @@
     public static class Reason
     {
         public static Reason<T> Create<T>(T value) => new Reason<T>(value, null);
-        public static Reason<T> Create<T>(T value, string reason) => new Reason<T>(value, reason);
+        public static Reason<T> Create<T>(T value, string? reason) => new Reason<T>(value, reason);
     }
 
     public class Reason<T>
