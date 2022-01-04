@@ -14,8 +14,7 @@ public static class FileExtensions
 
         DirectoryInfo parent = Directory.GetParent(path) ?? throw new Exception($"Unexpected error while trying to get path to cache folder. Cache path: {path}");
         Directory.CreateDirectory(parent.FullName);
-        using (File.Create(path))
-        {
-        }
+        using FileStream stream = File.Create(path);
+        stream.Close();
     }
 }

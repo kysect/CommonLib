@@ -24,15 +24,17 @@
             return value.Value;
         }
 
-        public string Format()
+        public string? Format()
         {
+            ArgumentNullException.ThrowIfNull(Value);
+
             if (string.IsNullOrWhiteSpace(Description))
                 return Value.ToString();
 
             return $"{Value} ({Description})";
         }
 
-        public override string ToString()
+        public override string? ToString()
         {
             return Format();
         }

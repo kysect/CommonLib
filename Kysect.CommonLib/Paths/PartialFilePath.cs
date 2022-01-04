@@ -1,6 +1,6 @@
 ﻿namespace Kysect.CommonLib.Paths;
 
-public class PartialFilePath
+public sealed class PartialFilePath : IEquatable<PartialFilePath>
 {
     public FileInfo File { get; }
     public PartialPath FilePath { get; }
@@ -21,8 +21,10 @@ public class PartialFilePath
             && Equals(other);
     }
 
-    public bool Equals(PartialFilePath other)
+    public bool Equals(PartialFilePath? other)
     {
+        if (ReferenceEquals(null, other))
+            return false;
         return FilePath.Equals(other.FilePath);
     }
 
