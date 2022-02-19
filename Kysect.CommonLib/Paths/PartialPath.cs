@@ -1,6 +1,6 @@
 ﻿namespace Kysect.CommonLib.Paths;
 
-public sealed class PartialPath : IEquatable<PartialPath>
+public struct PartialPath : IEquatable<PartialPath>
 {
     public string Root { get; }
     public string Value { get; }
@@ -36,10 +36,8 @@ public sealed class PartialPath : IEquatable<PartialPath>
         return obj is PartialPath other && Equals(other);
     }
 
-    public bool Equals(PartialPath? other)
+    public bool Equals(PartialPath other)
     {
-        if (ReferenceEquals(null, other))
-            return false;
         return Value.Equals(other.Value);
     }
 
