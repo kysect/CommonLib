@@ -8,7 +8,9 @@ public static class FileExtensions
 
     public static void EnsureFileExists(string path)
     {
-        ArgumentNullException.ThrowIfNull(path);
+        if (path is null)
+            throw new ArgumentNullException(nameof(path));
+
         if (File.Exists(path)) 
             return;
 

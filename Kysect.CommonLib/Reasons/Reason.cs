@@ -13,8 +13,6 @@
 
         public Reason(T value, string? description)
         {
-            ArgumentNullException.ThrowIfNull(value);
-
             Value = value;
             Description = description;
         }
@@ -24,12 +22,10 @@
             return value.Value;
         }
 
-        public string? Format()
+        public string Format()
         {
-            ArgumentNullException.ThrowIfNull(Value);
-
             if (string.IsNullOrWhiteSpace(Description))
-                return Value.ToString();
+                return Value?.ToString() ?? "null";
 
             return $"{Value} ({Description})";
         }
