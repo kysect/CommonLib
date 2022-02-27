@@ -8,16 +8,16 @@
 
     public class Reason<T>
     {
-        public T Value { get; }
+        public T? Value { get; }
         public string? Description { get; }
 
-        public Reason(T value, string? description)
+        public Reason(T? value, string? description)
         {
             Value = value;
             Description = description;
         }
 
-        public static implicit operator T(Reason<T> value)
+        public static implicit operator T?(Reason<T> value)
         {
             return value.Value;
         }
