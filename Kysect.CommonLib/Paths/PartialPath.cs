@@ -8,8 +8,10 @@ public struct PartialPath : IEquatable<PartialPath>
 
     public PartialPath(string root, string fullPath)
     {
-        ArgumentNullException.ThrowIfNull(root);
-        ArgumentNullException.ThrowIfNull(fullPath);
+        if (root is null)
+            throw new ArgumentNullException(nameof(root));
+        if (fullPath is null)
+            throw new ArgumentNullException(nameof(fullPath));
 
         if (!fullPath.StartsWith(root))
             throw new ArgumentException("Full path should start with root path");
