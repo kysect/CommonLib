@@ -2,7 +2,7 @@
 
 namespace Kysect.CommonLib;
 
-public class DirectoryExtensions
+public static class DirectoryExtensions
 {
     public static void EnsureFileExists(PartialPath path) => EnsureFileExists(path.FullPath);
 
