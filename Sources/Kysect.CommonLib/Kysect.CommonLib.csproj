@@ -10,18 +10,8 @@
     <Description>Common lib for Kysect projects.</Description>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/kysect/Kysect.CommonLib</RepositoryUrl>
-  </PropertyGroup>
+	  <LangVersion>latest</LangVersion>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Kysect.CommonLib.csproj.DotSettings" />
-  </ItemGroup>
 
 </Project>
