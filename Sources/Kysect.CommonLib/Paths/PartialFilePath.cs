@@ -23,8 +23,9 @@ public sealed class PartialFilePath : IEquatable<PartialFilePath>
 
     public bool Equals(PartialFilePath? other)
     {
-        if (ReferenceEquals(null, other))
+        if (other is null)
             return false;
+
         return FilePath.Equals(other.FilePath);
     }
 
