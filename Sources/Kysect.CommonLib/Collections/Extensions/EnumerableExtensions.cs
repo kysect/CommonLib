@@ -1,4 +1,4 @@
-﻿namespace Kysect.CommonLib;
+﻿namespace Kysect.CommonLib.Collections.Extensions;
 
 public static class EnumerableExtensions
 {

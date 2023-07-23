@@ -1,4 +1,4 @@
-﻿namespace Kysect.CommonLib.Paths;
+﻿namespace Kysect.CommonLib.FileSystem;
 
 public sealed class PartialFilePath : IEquatable<PartialFilePath>
 {

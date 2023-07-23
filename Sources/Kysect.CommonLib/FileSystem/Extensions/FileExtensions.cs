@@ -1,6 +1,4 @@
-﻿using Kysect.CommonLib.Paths;
-
-namespace Kysect.CommonLib;
+﻿namespace Kysect.CommonLib.FileSystem.Extensions;
 
 public static class FileExtensions
 {
