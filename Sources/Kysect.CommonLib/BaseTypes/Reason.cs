@@ -1,4 +1,4 @@
-﻿namespace Kysect.CommonLib.Reasons;
+﻿namespace Kysect.CommonLib.BaseTypes;
 
 public static class Reason
 {
