@@ -1,4 +1,4 @@
-﻿namespace Kysect.CommonLib.Paths;
+﻿namespace Kysect.CommonLib.FileSystem;
 
 public struct PartialPath : IEquatable<PartialPath>
 {
@@ -20,9 +20,7 @@ public struct PartialPath : IEquatable<PartialPath>
         FullPath = fullPath;
 
         if (root == fullPath)
-        {
             Value = string.Empty;
-        }
         else if (string.IsNullOrWhiteSpace(root))
         {
             Value = fullPath;
