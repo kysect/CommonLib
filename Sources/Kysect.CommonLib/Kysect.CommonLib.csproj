@@ -14,4 +14,8 @@
 
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Kysect.Editorconfig" Version="1.0.3" />
+  </ItemGroup>
+
 </Project>

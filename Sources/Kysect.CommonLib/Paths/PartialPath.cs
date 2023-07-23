@@ -20,9 +20,13 @@ public struct PartialPath : IEquatable<PartialPath>
         FullPath = fullPath;
 
         if (root == fullPath)
+        {
             Value = string.Empty;
+        }
         else if (string.IsNullOrWhiteSpace(root))
+        {
             Value = fullPath;
+        }
         else
         {
             Value = fullPath.Substring(root.Length);
@@ -40,7 +44,7 @@ public struct PartialPath : IEquatable<PartialPath>
 
     public bool Equals(PartialPath other)
     {
-        return Value.Equals(other.Value);
+        return Value.Equals(other.Value, StringComparison.Ordinal);
     }
 
     public override int GetHashCode()

@@ -11,7 +11,7 @@ public static class FileExtensions
         if (path is null)
             throw new ArgumentNullException(nameof(path));
 
-        if (File.Exists(path)) 
+        if (File.Exists(path))
             return;
 
         DirectoryInfo parent = Directory.GetParent(path) ?? throw new Exception($"Unexpected error while trying to get path to cache folder. Cache path: {path}");
