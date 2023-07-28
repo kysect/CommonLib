@@ -7,7 +7,7 @@ public class ReflectionTraverserTests
     [Test]
     public void GetAllImplementationOf_ForInterface_ShouldReturnAllInheritors()
     {
-        IReadOnlyCollection<Type> implementations = ReflectionTraverser.GetAllImplementationOf<IBaseInterface>(new[] { typeof(IBaseInterface).Assembly });
+        IReadOnlyCollection<Type> implementations = AssemblyReflectionTraverser.GetAllImplementationOf<IBaseInterface>(new[] { typeof(IBaseInterface).Assembly });
 
         Assert.That(typeof(IDerivedInterface).IsAssignableFrom(typeof(Implementation)));
         Assert.That(typeof(IBaseInterface).IsAssignableFrom(typeof(Implementation)));

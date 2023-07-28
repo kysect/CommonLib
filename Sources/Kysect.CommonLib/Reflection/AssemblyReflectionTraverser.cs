@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Kysect.CommonLib.Reflection;
 
-public static class ReflectionTraverser
+public static class AssemblyReflectionTraverser
 {
     public static IReadOnlyCollection<Type> GetAllClasses(IReadOnlyCollection<Assembly> assemblies)
     {
@@ -28,7 +28,7 @@ public static class ReflectionTraverser
         }
 
         var types = GetAllClasses(assemblies)
-            .Where(t => searchingType.IsAssignableFrom(t))
+            .Where(searchingType.IsAssignableFrom)
             .ToList();
 
         return types;
