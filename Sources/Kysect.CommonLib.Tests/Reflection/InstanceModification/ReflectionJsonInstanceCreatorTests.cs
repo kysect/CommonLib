@@ -4,6 +4,13 @@ namespace Kysect.CommonLib.Tests.Reflection.InstanceModification;
 
 public class ReflectionJsonInstanceCreatorTests
 {
+    private readonly ReflectionJsonInstanceCreator _instanceCreator;
+
+    public ReflectionJsonInstanceCreatorTests()
+    {
+        _instanceCreator = ReflectionJsonInstanceCreator.Create();
+    }
+
     [Test]
     public void InstanceCreator_CreateFromDictionary_ReturnExpectedValues()
     {
@@ -14,7 +21,7 @@ public class ReflectionJsonInstanceCreatorTests
             ["Name"] = instance.Name
         };
 
-        SomeType result = ReflectionJsonInstanceCreator.Create<SomeType>(dictionary);
+        SomeType result = _instanceCreator.Create<SomeType>(dictionary);
 
         Assert.IsNotNull(result);
         Assert.That(result, Is.EqualTo(instance));
