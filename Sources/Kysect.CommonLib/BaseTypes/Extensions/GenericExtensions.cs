@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace Kysect.CommonLib.BaseTypes.Extensions;
 
@@ -26,10 +27,10 @@ public static class GenericExtensions
     }
 
     [return: NotNull]
-    public static T ThrowIfNull<T>([NotNull] this T value, string name)
+    public static T ThrowIfNull<T>([NotNull] this T value, [CallerMemberName] string argumentName = "")
     {
         if (value == null)
-            throw new ArgumentNullException(name);
+            throw new ArgumentNullException(argumentName);
 
         return value;
     }
