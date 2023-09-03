@@ -1,4 +1,5 @@
-﻿using Kysect.CommonLib.Reflection;
+﻿using FluentAssertions;
+using Kysect.CommonLib.Reflection;
 using Kysect.CommonLib.Reflection.TypeCache;
 
 namespace Kysect.CommonLib.Tests.Reflection.TypeCache;
@@ -10,7 +11,7 @@ public class TypeInstanceCacheElementTests
     {
         int emptyInstance = TypeInstanceCache<int>.CreateEmptyInstance();
 
-        Assert.AreEqual(0, emptyInstance);
+        emptyInstance.Should().Be(0);
     }
 
     [Test]
