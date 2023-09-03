@@ -8,21 +8,32 @@ public class CollectionDiffTests
     private class TestContainer
     {
         public int Value { get; }
+        public Guid RandomId { get; }
 
         public TestContainer(int value)
         {
             Value = value;
+            RandomId = Guid.NewGuid();
+        }
+    }
+
+    private class TestContainerComparator : IEqualityComparer<TestContainer>
+    {
+        public static TestContainerComparator Instance { get; } = new TestContainerComparator();
+
+        public bool Equals(TestContainer? x, TestContainer? y)
+        {
+            if (ReferenceEquals(x, y))
+                return true;
+            if (x is null || y is null)
+                return false;
+
+            return x.Value == y.Value;
         }
 
-        public override bool Equals(object? obj)
+        public int GetHashCode(TestContainer obj)
         {
-            return obj is TestContainer testContainer
-                && testContainer.Value.Equals(Value);
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Value);
+            return obj.Value;
         }
     }
 
@@ -71,22 +82,23 @@ public class CollectionDiffTests
     [Test]
     public void Create_ForSame_ReturnExpected()
     {
-        var element = new TestContainer(1);
+        var leftElement = new TestContainer(1);
+        var rightElement = new TestContainer(1);
 
         var left = new List<TestContainer>()
         {
-            element,
+            leftElement,
         };
 
         var right = new List<TestContainer>()
         {
-            element,
+            rightElement,
         };
 
-        var diff = CollectionDiff.Create(left, right);
+        var diff = CollectionDiff.Create(left, right, TestContainerComparator.Instance);
 
         diff.Added.Should().BeEmpty();
         diff.Removed.Should().BeEmpty();
-        diff.Same.Should().Contain(element);
+        diff.Same.Should().Contain(leftElement);
     }
 }

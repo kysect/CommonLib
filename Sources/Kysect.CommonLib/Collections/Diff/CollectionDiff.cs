@@ -7,7 +7,7 @@ public static class CollectionDiff
         return Create(left, right, EqualityComparer<T>.Default);
     }
 
-    public static CollectionDiff<T> Create<T>(IReadOnlyCollection<T> left, IReadOnlyCollection<T> right, EqualityComparer<T> comparer)
+    public static CollectionDiff<T> Create<T>(IReadOnlyCollection<T> left, IReadOnlyCollection<T> right, IEqualityComparer<T> comparer)
     {
         var added = new List<T>();
         var removed = new List<T>();
