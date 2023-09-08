@@ -2,21 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<Version>0.1.6</Version>
-		<Authors>Kysect</Authors>
-		<Company>Kysect</Company>
+		<Title>Kysect.CommonLib</Title>
 		<Description>Common lib for Kysect projects.</Description>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<RepositoryUrl>https://github.com/kysect/Kysect.CommonLib</RepositoryUrl>
-		<LangVersion>latest</LangVersion>
-		<Title>Kysect.CommonLib</Title>
 		<PackageProjectUrl>https://github.com/kysect/CommonLib</PackageProjectUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<WarningLevel>9999</WarningLevel>
-
 	</PropertyGroup>
 
 	<ItemGroup>
