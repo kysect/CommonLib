@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Kysect.CommonLib.Logging;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
-namespace Kysect.CommonLib.Logging.DependencyInjection;
+namespace Kysect.CommonLib.DependencyInjection;
 
 public static class ServiceConnectionLoggingExtensions
 {
