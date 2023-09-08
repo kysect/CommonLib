@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.31903.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.CommonLib", "Kysect.CommonLib\Kysect.CommonLib.csproj", "{E8F01267-DA18-42DC-9859-423209B99F3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.CommonLib.Tests", "Kysect.CommonLib.Tests\Kysect.CommonLib.Tests.csproj", "{2147DEBE-DA93-4823-B31A-41549892744F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.CommonLib.Tests", "Kysect.CommonLib.Tests\Kysect.CommonLib.Tests.csproj", "{2147DEBE-DA93-4823-B31A-41549892744F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.CommonLib.DependencyInjection", "Kysect.CommonLib.DependencyInjection\Kysect.CommonLib.DependencyInjection.csproj", "{AA74524A-D403-4EC2-849B-92A2EF25A570}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2147DEBE-DA93-4823-B31A-41549892744F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2147DEBE-DA93-4823-B31A-41549892744F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2147DEBE-DA93-4823-B31A-41549892744F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA74524A-D403-4EC2-849B-92A2EF25A570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA74524A-D403-4EC2-849B-92A2EF25A570}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA74524A-D403-4EC2-849B-92A2EF25A570}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA74524A-D403-4EC2-849B-92A2EF25A570}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
