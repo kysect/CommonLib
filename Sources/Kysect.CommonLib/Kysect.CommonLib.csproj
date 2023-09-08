@@ -20,9 +20,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Kysect.Editorconfig" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-		<PackageReference Include="Nullable" >
+		<PackageReference Include="Nullable">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
