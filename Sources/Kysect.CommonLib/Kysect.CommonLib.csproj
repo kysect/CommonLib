@@ -4,7 +4,6 @@
 		<Title>Kysect.CommonLib</Title>
 		<Description>Common lib for Kysect projects.</Description>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageProjectUrl>https://github.com/kysect/CommonLib</PackageProjectUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
