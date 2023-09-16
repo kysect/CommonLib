@@ -2,7 +2,7 @@
 
 namespace Kysect.CommonLib.FileSystem;
 
-public class NonLockFileReader
+public static class NonLockFileReader
 {
     public static IEnumerable<string> ReadAllLines(string path)
     {

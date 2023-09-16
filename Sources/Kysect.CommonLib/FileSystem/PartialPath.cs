@@ -1,6 +1,6 @@
 ﻿namespace Kysect.CommonLib.FileSystem;
 
-public struct PartialPath : IEquatable<PartialPath>
+public readonly struct PartialPath : IEquatable<PartialPath>
 {
     public string Root { get; }
     public string Value { get; }
@@ -35,25 +35,38 @@ public struct PartialPath : IEquatable<PartialPath>
         }
     }
 
-    public static PartialPath FromRoot(string fullPath) => new PartialPath(string.Empty, fullPath);
+    public static PartialPath FromRoot(string fullPath)
+    {
+        return new PartialPath(string.Empty, fullPath);
+    }
 
     public override bool Equals(object? obj)
     {
         return obj is PartialPath other && Equals(other);
     }
 
-    public bool Equals(PartialPath other)
+    public readonly bool Equals(PartialPath other)
     {
         return Value.Equals(other.Value, StringComparison.Ordinal);
     }
 
-    public override int GetHashCode()
+    public override readonly int GetHashCode()
     {
         return Value.GetHashCode();
     }
 
-    public override string ToString()
+    public override readonly string ToString()
     {
         return Value;
+    }
+
+    public static bool operator ==(PartialPath left, PartialPath right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(PartialPath left, PartialPath right)
+    {
+        return !(left == right);
     }
 }

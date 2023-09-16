@@ -1,4 +1,5 @@
-﻿using Kysect.CommonLib.Reflection.TypeCache;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.CommonLib.Reflection.TypeCache;
 using System.Reflection;
 
 namespace Kysect.CommonLib.Reflection;
@@ -20,7 +21,10 @@ public static class AssemblyReflectionTraverser
 
     public static IReadOnlyCollection<Type> GetAllImplementationOf(IReadOnlyCollection<Assembly> assemblies, Type searchingType)
     {
-        if (searchingType.IsGenericType && searchingType.IsGenericTypeDefinition)
+        assemblies.ThrowIfNull();
+        searchingType.ThrowIfNull();
+
+        if (searchingType is { IsGenericType: true, IsGenericTypeDefinition: true })
         {
             return GetAllClasses(assemblies)
                 .Where(t => FindInterfaceImplementationByGenericTypeDefinition(t, searchingType) is not null)
@@ -36,6 +40,9 @@ public static class AssemblyReflectionTraverser
 
     public static Type? FindInterfaceImplementationByGenericTypeDefinition(Type sourceType, Type interfaceGenericTypeDefinition)
     {
+        sourceType.ThrowIfNull();
+        interfaceGenericTypeDefinition.ThrowIfNull();
+
         return sourceType
             .GetInterfaces()
             .Where(i => i.IsGenericType)

@@ -2,8 +2,15 @@
 
 public static class Reason
 {
-    public static Reason<T> Create<T>(T value) => new Reason<T>(value, null);
-    public static Reason<T> Create<T>(T value, string? reason) => new Reason<T>(value, reason);
+    public static Reason<T> Create<T>(T value)
+    {
+        return new Reason<T>(value, null);
+    }
+
+    public static Reason<T> Create<T>(T value, string? reason)
+    {
+        return new Reason<T>(value, reason);
+    }
 }
 
 public class Reason<T>
@@ -17,9 +24,9 @@ public class Reason<T>
         Description = description;
     }
 
-    public static implicit operator T?(Reason<T> value)
+    public static implicit operator T?(Reason<T>? value)
     {
-        return value.Value;
+        return value is null ? default : value.Value;
     }
 
     public string Format()

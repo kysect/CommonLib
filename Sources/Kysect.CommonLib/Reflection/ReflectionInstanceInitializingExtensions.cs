@@ -8,6 +8,9 @@ public static class ReflectionInstanceInitializingExtensions
 {
     public static bool TrySetToProperty(object instance, PropertyInfo? propertyInfo, object? newValue)
     {
+        instance.ThrowIfNull();
+
+
         if (propertyInfo is null)
             return false;
 
