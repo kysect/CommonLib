@@ -1,4 +1,6 @@
-﻿namespace Kysect.CommonLib.Collections.Diff;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+
+namespace Kysect.CommonLib.Collections.Diff;
 
 public static class CollectionDiff
 {
@@ -9,6 +11,10 @@ public static class CollectionDiff
 
     public static CollectionDiff<T> Create<T>(IReadOnlyCollection<T> left, IReadOnlyCollection<T> right, IEqualityComparer<T> comparer)
     {
+        left.ThrowIfNull();
+        right.ThrowIfNull();
+        comparer.ThrowIfNull();
+
         var added = new List<T>();
         var removed = new List<T>();
         var same = new List<T>();

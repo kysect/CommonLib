@@ -1,8 +1,9 @@
 ﻿namespace Kysect.CommonLib.DependencyInjection;
 
-public class IocContainerDependencyDisposer : IDisposable
+public sealed class IocContainerDependencyDisposer : IDisposable
 {
     private readonly Stack<IDisposable> _elements = new Stack<IDisposable>();
+    private bool _disposedValue;
 
     public T Add<T>(T instance) where T : class, IDisposable
     {
@@ -10,12 +11,25 @@ public class IocContainerDependencyDisposer : IDisposable
         return instance;
     }
 
+    private void Dispose(bool disposing)
+    {
+        if (_disposedValue)
+            return;
+
+        if (disposing)
+        {
+            while (_elements.Count > 0)
+            {
+                IDisposable disposable = _elements.Pop();
+                disposable.Dispose();
+            }
+        }
+
+        _disposedValue = true;
+    }
+
     public void Dispose()
     {
-        while (_elements.Count > 0)
-        {
-            IDisposable disposable = _elements.Pop();
-            disposable.Dispose();
-        }
+        Dispose(disposing: true);
     }
 }

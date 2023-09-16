@@ -1,6 +1,6 @@
 ﻿namespace Kysect.CommonLib.Exceptions;
 
-public class SwitchDefaultException
+public static class SwitchDefaultExceptions
 {
     public static ArgumentOutOfRangeException OnUnexpectedEnum<T>(string argumentName, T value) where T : struct, Enum
     {

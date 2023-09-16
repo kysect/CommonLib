@@ -23,7 +23,13 @@ public static class LookupExtensions
 
         public int Count => 0;
 
-        public IEnumerable<TValue> this[TKey key] => throw new KeyNotFoundException(key?.ToString());
+        public IEnumerable<TValue> this[TKey key]
+        {
+            get
+            {
+                throw new KeyNotFoundException(key?.ToString());
+            }
+        }
     }
 
     public static ILookup<TKey, TValue> ToLookup<TKey, TValue>(this Dictionary<TKey, List<TValue>> dictionary)

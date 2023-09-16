@@ -3,16 +3,11 @@
         <Authors>Kysect</Authors>
 		<Company>Kysect</Company>
         <RepositoryUrl>https://github.com/kysect/Kysect.CommonLib</RepositoryUrl>
-        <Version>0.1.7</Version>
+        <Version>0.1.8</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 
         <LangVersion>latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-        <NoWarn>$(NoWarn);CS1591</NoWarn>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<WarningLevel>9999</WarningLevel>
-        <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     </PropertyGroup>
 </Project>

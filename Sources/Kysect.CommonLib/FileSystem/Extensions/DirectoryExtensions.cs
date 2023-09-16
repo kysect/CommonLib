@@ -2,7 +2,10 @@
 
 public static class DirectoryExtensions
 {
-    public static void EnsureFileExists(PartialPath path) => EnsureFileExists(path.FullPath);
+    public static void EnsureFileExists(PartialPath path)
+    {
+        EnsureFileExists(path.FullPath);
+    }
 
     public static void EnsureFileExists(string path)
     {
