@@ -5,7 +5,7 @@ namespace Kysect.CommonLib.BaseTypes.Extensions;
 
 public static class GenericExtensions
 {
-    [return: NotNullIfNotNull("source")]
+    [return: NotNullIfNotNull(nameof(source))]
     public static T? To<T>(this object? source)
     {
         try
@@ -13,7 +13,7 @@ public static class GenericExtensions
             if (source is null)
                 return default;
 
-            return (T)source;
+            return (T) source;
         }
         catch (Exception ex)
         {
@@ -23,6 +23,8 @@ public static class GenericExtensions
 
     public static TResult To<T, TResult>(this T source, Func<T, TResult> selector)
     {
+        selector.ThrowIfNull();
+
         return selector(source);
     }
 

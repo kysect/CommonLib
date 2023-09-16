@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using System.Reflection;
 
 namespace Kysect.CommonLib.Reflection.TypeCache;
 
@@ -8,12 +9,15 @@ public static class TypeInstanceCache
 
     public static TypeInstanceCacheElement GetOrAdd(Type type)
     {
-        if (!_elements.ContainsKey(type))
+        type.ThrowIfNull();
+
+        if (!_elements.TryGetValue(type, out TypeInstanceCacheElement? value))
         {
-            _elements[type] = new TypeInstanceCacheElement(type);
+            value = new TypeInstanceCacheElement(type);
+            _elements[type] = value;
         }
 
-        return _elements[type];
+        return value;
     }
 }
 
@@ -38,6 +42,6 @@ public static class TypeInstanceCache<T>
 
     public static T CreateEmptyInstance()
     {
-        return (T)TypeInstanceCache.GetOrAdd(Instance).CreateEmptyInstance();
+        return (T) TypeInstanceCache.GetOrAdd(Instance).CreateEmptyInstance();
     }
 }

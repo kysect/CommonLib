@@ -6,7 +6,7 @@ public static class PredefinedLogger
 {
     public static ILogger CreateConsoleLogger(string category = "ConsoleLogger")
     {
-        ILoggerFactory factory = LoggerFactory
+        using ILoggerFactory factory = LoggerFactory
             .Create(b =>
             {
                 b.AddSimpleConsole(options =>

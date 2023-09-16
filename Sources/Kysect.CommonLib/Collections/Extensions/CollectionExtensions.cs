@@ -1,9 +1,14 @@
-﻿namespace Kysect.CommonLib.Collections.Extensions;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+
+namespace Kysect.CommonLib.Collections.Extensions;
 
 public static class CollectionExtensions
 {
     public static void AddEach<T>(this ICollection<T> collection, IEnumerable<T> elements)
     {
+        collection.ThrowIfNull();
+        elements.ThrowIfNull();
+
         foreach (T element in elements)
             collection.Add(element);
     }

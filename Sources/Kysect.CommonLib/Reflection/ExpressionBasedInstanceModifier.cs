@@ -14,6 +14,8 @@ public class ExpressionBasedInstanceModifier
         TProperty newPropertyValue)
     {
         instance = instance.ThrowIfNull(nameof(instance));
+        selector.ThrowIfNull(nameof(selector));
+
         newPropertyValue = newPropertyValue.ThrowIfNull(nameof(newPropertyValue));
 
         if (selector.Body is not MemberExpression memberExpression)

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Text;
@@ -14,6 +15,8 @@ public class LoggerTraceListener : TraceListener
 
     public LoggerTraceListener(ILoggerFactory loggerFactory)
     {
+        loggerFactory.ThrowIfNull();
+
         _loggerFactory = loggerFactory;
         _defaultLogger = loggerFactory.CreateLogger(nameof(LoggerTraceListener));
     }
@@ -25,7 +28,12 @@ public class LoggerTraceListener : TraceListener
         logger.Log(MapLevel(eventType), message);
     }
 
-    public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? format,
+    public override void TraceEvent(
+        TraceEventCache? eventCache,
+        string source,
+        TraceEventType eventType,
+        int id,
+        string? format,
         params object?[]? args)
     {
         ILogger logger = _loggers.GetOrAdd(source, _loggerFactory.CreateLogger);
@@ -45,18 +53,21 @@ public class LoggerTraceListener : TraceListener
         _builder.Clear();
     }
 
-    private LogLevel MapLevel(TraceEventType eventType) => eventType switch
+    private LogLevel MapLevel(TraceEventType eventType)
     {
-        TraceEventType.Verbose => LogLevel.Debug,
-        TraceEventType.Information => LogLevel.Information,
-        TraceEventType.Critical => LogLevel.Critical,
-        TraceEventType.Error => LogLevel.Error,
-        TraceEventType.Warning => LogLevel.Warning,
-        TraceEventType.Resume => throw new NotSupportedException(),
-        TraceEventType.Start => throw new NotSupportedException(),
-        TraceEventType.Stop => throw new NotSupportedException(),
-        TraceEventType.Suspend => throw new NotSupportedException(),
-        TraceEventType.Transfer => throw new NotSupportedException(),
-        _ => LogLevel.Trace
-    };
+        return eventType switch
+        {
+            TraceEventType.Verbose => LogLevel.Debug,
+            TraceEventType.Information => LogLevel.Information,
+            TraceEventType.Critical => LogLevel.Critical,
+            TraceEventType.Error => LogLevel.Error,
+            TraceEventType.Warning => LogLevel.Warning,
+            TraceEventType.Resume => throw new NotSupportedException(),
+            TraceEventType.Start => throw new NotSupportedException(),
+            TraceEventType.Stop => throw new NotSupportedException(),
+            TraceEventType.Suspend => throw new NotSupportedException(),
+            TraceEventType.Transfer => throw new NotSupportedException(),
+            _ => LogLevel.Trace
+        };
+    }
 }

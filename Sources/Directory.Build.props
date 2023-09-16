@@ -9,10 +9,5 @@
 
         <LangVersion>latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-        <NoWarn>$(NoWarn);CS1591</NoWarn>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<WarningLevel>9999</WarningLevel>
-        <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     </PropertyGroup>
 </Project>
