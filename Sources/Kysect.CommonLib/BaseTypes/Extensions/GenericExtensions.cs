@@ -29,7 +29,7 @@ public static class GenericExtensions
     }
 
     [return: NotNull]
-    public static T ThrowIfNull<T>([NotNull] this T value, [CallerMemberName] string argumentName = "")
+    public static T ThrowIfNull<T>([NotNull] this T value, [CallerArgumentExpression(nameof(value))] string argumentName = "")
     {
         if (value == null)
             throw new ArgumentNullException(argumentName);
