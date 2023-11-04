@@ -4,57 +4,114 @@ using System.Reflection;
 
 namespace Kysect.CommonLib.Reflection;
 
-public static class ReflectionAttributeExtensions
+public class ReflectionAttributeFinder
 {
-    public static bool HasAttribute<T>(this Type value) where T : Attribute
+    public bool HasAttribute<TAttribute>(Type type) where TAttribute : Attribute
     {
-        T? customAttribute = FindAttribute<T>(value);
-        return customAttribute is not null;
+        type.ThrowIfNull();
+
+        return FindAttributeFromType<TAttribute>(type) is not null;
     }
 
-    public static T GetAttribute<T>(this object value) where T : Attribute
+    public TAttribute? FindAttributeFromType<TAttribute>(Type type) where TAttribute : Attribute
     {
-        value.ThrowIfNull();
+        type.ThrowIfNull();
 
-        return GetAttribute<T>(value.GetType());
+        return TryExtractAttribute<TAttribute>(type);
     }
 
-    public static T GetAttribute<T>(this Type value) where T : Attribute
+    public TAttribute GetAttributeFromType<TAttribute>(Type type) where TAttribute : Attribute
     {
-        value.ThrowIfNull();
+        type.ThrowIfNull();
 
-        T? customAttribute = FindAttribute<T>(value) ?? throw new ArgumentException($"Type {value.Name} does not contains attribute {typeof(T).Name}");
+        TAttribute? customAttribute = FindAttributeFromType<TAttribute>(type);
+        if (customAttribute is null)
+            throw new ArgumentException($"Type {type.Name} does not contains attribute {typeof(TAttribute).Name}");
 
         return customAttribute;
     }
 
-    public static T? FindAttribute<T>(this Type value) where T : Attribute
+    public TAttribute? FindAttributeFromInstance<TAttribute>(object value) where TAttribute : Attribute
     {
-        Type attributeType = TypeInstanceCache<T>.Instance;
-        var customAttribute = Attribute.GetCustomAttribute(value, attributeType);
-        return (T) customAttribute;
+        value.ThrowIfNull();
+
+        return FindAttributeFromType<TAttribute>(value.GetType());
+
     }
 
-    public static IReadOnlyCollection<Type> GetTypeWithAttribute<T>(this Assembly assembly) where T : Attribute
+    public TAttribute GetAttributeFromInstance<TAttribute>(object value) where TAttribute : Attribute
+    {
+        value.ThrowIfNull();
+
+        return GetAttributeFromType<TAttribute>(value.GetType());
+    }
+
+    public TAttribute GetAttributeFromEnumValue<TAttribute, TEnum>(TEnum value)
+        where TAttribute : Attribute
+        where TEnum : struct, Enum
+    {
+        TAttribute? result = FindAttributeFromEnumValue<TAttribute, TEnum>(value);
+        return result ?? throw new ArgumentNullException($"Attribute {nameof(TAttribute)} was not found for {value.GetType()}");
+    }
+
+    public TAttribute? FindAttributeFromEnumValue<TAttribute, TEnum>(TEnum value)
+        where TAttribute : Attribute
+        where TEnum : struct, Enum
+    {
+        MemberInfo member = ExtractEnumValueMember(value);
+        return TryExtractAttribute<TAttribute>(member);
+    }
+
+    public IReadOnlyCollection<Type> GetTypeWithAttribute<T>(Assembly assembly) where T : Attribute
     {
         assembly.ThrowIfNull();
 
         return assembly
             .GetTypes()
-            .Where(t => t.GetCustomAttributesData().Any(a => a.AttributeType == typeof(T)))
+            .Where(t => t.GetCustomAttributesData().Any(a => a.AttributeType == TypeInstanceCache<T>.Instance))
             .ToList();
     }
 
-    public static Type[] GetGenericInterfaceInnerTypes(this Type currentType, Type interfaceType)
+    public IReadOnlyDictionary<TEnum, TAttribute> GetAttributesFromEnumValues<TAttribute, TEnum>()
+        where TAttribute : Attribute
+        where TEnum : struct, Enum
     {
-        currentType.ThrowIfNull();
-        interfaceType.ThrowIfNull();
+        var result = new Dictionary<TEnum, TAttribute>();
 
-        Type[] allTypeInterfaces = currentType.GetInterfaces();
-        Type? concreteTaskInterface = allTypeInterfaces.FirstOrDefault(i =>
-            i.IsGenericType &&
-            i.GetGenericTypeDefinition() == interfaceType);
+        Type enumType = TypeInstanceCache<TEnum>.Instance;
 
-        return concreteTaskInterface?.GetGenericArguments() ?? throw new ArgumentException($"Type {currentType.Name} is implement {interfaceType.Name}.");
+        foreach (MemberInfo memberInfo in enumType.GetMembers())
+        {
+            var attribute = TryExtractAttribute<TAttribute>(memberInfo);
+            if (attribute is null)
+                continue;
+
+            if (!Enum.TryParse<TEnum>(memberInfo.Name, out var enumValue))
+                throw new ReflectionException($"Member {memberInfo.Name} cannot be converted to value of enum {typeof(TEnum).Name}");
+
+            result[enumValue] = attribute;
+        }
+
+        return result;
+    }
+
+    private MemberInfo ExtractEnumValueMember<TEnum>(TEnum value)
+    {
+        value.ThrowIfNull();
+
+        Type enumType = TypeInstanceCache<TEnum>.Instance;
+        MemberInfo[] members = enumType.GetMember(value.ToString());
+        if (members.Length != 1)
+            throw new ReflectionException($"Unexpected count of member with name {value} in type {enumType.FullName}: {members.Length}");
+
+        MemberInfo member = members.Single();
+        return member;
+    }
+
+    private TAttribute? TryExtractAttribute<TAttribute>(MemberInfo value) where TAttribute : Attribute
+    {
+        Type attributeType = TypeInstanceCache<TAttribute>.Instance;
+        var customAttribute = Attribute.GetCustomAttribute(value, attributeType);
+        return (TAttribute) customAttribute;
     }
 }
