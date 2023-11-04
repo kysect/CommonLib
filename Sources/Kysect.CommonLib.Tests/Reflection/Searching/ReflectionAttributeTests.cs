@@ -5,6 +5,13 @@ namespace Kysect.CommonLib.Tests.Reflection.Searching;
 
 public class ReflectionAttributeTests
 {
+    private readonly ReflectionAttributeFinder _reflectionAttributeFinder;
+
+    public ReflectionAttributeTests()
+    {
+        _reflectionAttributeFinder = new ReflectionAttributeFinder();
+    }
+
     [AttributeUsage(AttributeTargets.Enum)]
     public sealed class TestFakeAttribute<T> : Attribute
         where T : struct, Enum
@@ -26,7 +33,7 @@ public class ReflectionAttributeTests
     [Test]
     public void AttributeChecker_ForGenericAttribute_ReturnAttribute()
     {
-        Attribute? customAttribute = TypeInstanceCache<SomeTestType>.Instance.GetAttribute<TestFakeAttribute<DayOfWeek>>();
+        Attribute? customAttribute = _reflectionAttributeFinder.GetAttributeFromType<TestFakeAttribute<DayOfWeek>>(TypeInstanceCache<SomeTestType>.Instance);
 
         Assert.NotNull(customAttribute);
     }
@@ -34,7 +41,7 @@ public class ReflectionAttributeTests
     [Test]
     public void AttributeChecker_ForTypeWithoutAttribute_ReturnFalse()
     {
-        bool hasAttribute = TypeInstanceCache<object>.Instance.HasAttribute<AuthorAttribute>();
+        bool hasAttribute = _reflectionAttributeFinder.HasAttribute<AuthorAttribute>(TypeInstanceCache<object>.Instance);
 
         Assert.IsFalse(hasAttribute);
     }
