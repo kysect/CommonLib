@@ -4,17 +4,19 @@ namespace Kysect.CommonLib.DependencyInjection;
 
 public static class PredefinedLogger
 {
-    public static ILogger CreateConsoleLogger(string category = "ConsoleLogger")
+    public static ILogger CreateConsoleLogger(string category = "ConsoleLogger", LogLevel logLevel = LogLevel.Trace)
     {
         using ILoggerFactory factory = LoggerFactory
             .Create(b =>
             {
-                b.AddSimpleConsole(options =>
-                {
-                    options.IncludeScopes = true;
-                    options.SingleLine = true;
-                    options.TimestampFormat = "HH:mm:ss ";
-                });
+                b
+                    .AddFilter(null, logLevel)
+                    .AddSimpleConsole(options =>
+                    {
+                        options.IncludeScopes = true;
+                        options.SingleLine = true;
+                        options.TimestampFormat = "HH:mm:ss ";
+                    });
             });
 
         return factory.CreateLogger(category);
