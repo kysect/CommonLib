@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
-namespace Kysect.CommonLib.DependencyInjection;
+namespace Kysect.CommonLib.DependencyInjection.Logging;
 
 public static class ServiceConnectionLoggingExtensions
 {

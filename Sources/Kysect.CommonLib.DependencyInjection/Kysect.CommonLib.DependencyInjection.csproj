@@ -21,11 +21,15 @@
   <ItemGroup>
     <PackageReference Include="codeessentials.Extensions.Logging.Demystifier" />
     <PackageReference Include="Kysect.Editorconfig" />
+    <PackageReference Include="Lunet.Extensions.Logging.SpectreConsole" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="Microsoft.Extensions.Hosting" />
     <PackageReference Include="Microsoft.Extensions.Logging" />
     <PackageReference Include="Microsoft.Extensions.Options" />
     <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" />
+    <PackageReference Include="Serilog.Extensions.Logging" />
+    <PackageReference Include="Serilog.Settings.Configuration" />
+    <PackageReference Include="Serilog.Sinks.File" />
   </ItemGroup>
 
   <ItemGroup>
