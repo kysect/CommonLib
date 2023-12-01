@@ -4,6 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="codeessentials.Extensions.Logging.Demystifier" Version="1.1.66" />
+    <PackageVersion Include="IsExternalInit" Version="1.0.3" />
     <PackageVersion Include="Kysect.Editorconfig" Version="1.1.4" />
     <PackageVersion Include="Lunet.Extensions.Logging.SpectreConsole" Version="1.1.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
