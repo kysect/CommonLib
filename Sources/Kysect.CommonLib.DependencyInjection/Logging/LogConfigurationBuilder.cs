@@ -1,4 +1,5 @@
-﻿using Lunet.Extensions.Logging.SpectreConsole;
+﻿using Kysect.CommonLib.Disposing;
+using Lunet.Extensions.Logging.SpectreConsole;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -9,8 +10,7 @@ namespace Kysect.CommonLib.DependencyInjection.Logging;
 
 public sealed class LogConfigurationBuilder : IDisposable
 {
-    private readonly Stack<IDisposable> _disposables = new Stack<IDisposable>();
-    private bool _disposedValue;
+    private readonly DisposableStack _disposables = new DisposableStack();
     private readonly ServiceCollection _serviceCollection;
     private readonly ILoggingBuilder _loggingBuilder;
 
@@ -98,8 +98,10 @@ public sealed class LogConfigurationBuilder : IDisposable
     public void Register(IServiceCollection serviceCollection)
     {
         ServiceProvider serviceProvider = _serviceCollection.BuildServiceProvider();
-        serviceCollection.AddSingleton(serviceProvider.GetRequiredService<ILoggerFactory>());
-        serviceCollection.AddSingleton(serviceProvider.GetRequiredService<ILogger>());
+        var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
+
+        serviceCollection.AddSingleton(loggerFactory);
+        serviceCollection.AddSingleton(loggerFactory.CreateLogger(_defaultCategory));
     }
 
     public ILogger Build()
@@ -109,24 +111,8 @@ public sealed class LogConfigurationBuilder : IDisposable
         return loggerFactory.CreateLogger(_defaultCategory);
     }
 
-    private void Dispose(bool disposing)
-    {
-        if (_disposedValue)
-            return;
-
-        if (disposing)
-        {
-            while (_disposables.Count > 0)
-            {
-                _disposables.Pop().Dispose();
-            }
-        }
-
-        _disposedValue = true;
-    }
-
     public void Dispose()
     {
-        Dispose(disposing: true);
+        _disposables.Dispose();
     }
 }
