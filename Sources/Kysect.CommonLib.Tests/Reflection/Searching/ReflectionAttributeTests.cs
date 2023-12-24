@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Kysect.CommonLib.Reflection;
 using Kysect.CommonLib.Reflection.TypeCache;
 
@@ -35,7 +36,7 @@ public class ReflectionAttributeTests
     {
         Attribute? customAttribute = _reflectionAttributeFinder.GetAttributeFromType<TestFakeAttribute<DayOfWeek>>(TypeInstanceCache<SomeTestType>.Instance);
 
-        Assert.NotNull(customAttribute);
+        customAttribute.Should().NotBeNull();
     }
 
     [Test]
@@ -43,6 +44,6 @@ public class ReflectionAttributeTests
     {
         bool hasAttribute = _reflectionAttributeFinder.HasAttribute<AuthorAttribute>(TypeInstanceCache<object>.Instance);
 
-        Assert.IsFalse(hasAttribute);
+        hasAttribute.Should().BeFalse();
     }
 }
