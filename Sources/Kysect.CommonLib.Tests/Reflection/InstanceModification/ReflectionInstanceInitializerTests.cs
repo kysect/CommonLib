@@ -1,4 +1,5 @@
-﻿using Kysect.CommonLib.Reflection;
+﻿using FluentAssertions;
+using Kysect.CommonLib.Reflection;
 
 namespace Kysect.CommonLib.Tests.Reflection.InstanceModification;
 
@@ -16,8 +17,8 @@ public class ReflectionInstanceInitializerTests
         bool firstFieldInitialized = reflectionInstanceInitializer.Set(nameof(TypeForInitialized.Value1), expected.Value1);
         bool secondFieldInitialized = reflectionInstanceInitializer.Set(nameof(TypeForInitialized.Value2), expected.Value2);
 
-        Assert.True(firstFieldInitialized);
-        Assert.True(secondFieldInitialized);
-        Assert.That(actual, Is.EqualTo(expected));
+        firstFieldInitialized.Should().BeTrue();
+        secondFieldInitialized.Should().BeTrue();
+        actual.Should().Be(expected);
     }
 }

@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Kysect.CommonLib.Reflection;
 
 namespace Kysect.CommonLib.Tests.Reflection.InstanceModification;
@@ -23,7 +24,8 @@ public class ReflectionJsonInstanceCreatorTests
 
         SomeType result = _instanceCreator.Create<SomeType>(dictionary);
 
-        Assert.IsNotNull(result);
+        result.Should().NotBeNull();
+        result.Should().Be(instance);
         Assert.That(result, Is.EqualTo(instance));
     }
 
