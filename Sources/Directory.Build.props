@@ -14,7 +14,7 @@
     <PropertyGroup>
         <RepositoryUrl>https://github.com/kysect/Kysect.CommonLib</RepositoryUrl>
         <PackageProjectUrl>https://github.com/kysect/Kysect.CommonLib</PackageProjectUrl>
-        <Version>0.1.14</Version>
+        <Version>0.1.15</Version>
     </PropertyGroup>
 
     <!-- Code configuration -->
