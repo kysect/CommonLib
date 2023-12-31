@@ -2,7 +2,7 @@
 
 namespace Kysect.CommonLib.Logging;
 
-public static class LoggerExtensions
+public static class PrefixLoggerProxyExtensions
 {
     public static ILogger WithPrefix(this ILogger logger, string prefix)
     {
