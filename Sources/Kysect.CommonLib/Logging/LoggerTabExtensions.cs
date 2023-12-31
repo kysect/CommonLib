@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Text;
 
 namespace Kysect.CommonLib.Logging;
 
@@ -45,11 +46,11 @@ public static class LoggerTabExtensions
         if (tabCount == 0)
             return string.Empty;
 
-        string prefix = string.Empty;
+        var sb = new StringBuilder();
 
         for (int i = 0; i < tabCount; i++)
-            prefix += '\t';
+            sb.Append('\t');
 
-        return prefix;
+        return sb.ToString();
     }
 }
