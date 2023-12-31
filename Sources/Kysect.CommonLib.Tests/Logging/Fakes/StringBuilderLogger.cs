@@ -1,17 +1,16 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
 using Kysect.CommonLib.Disposing;
 using Microsoft.Extensions.Logging;
-using System.Text;
 
 namespace Kysect.CommonLib.Tests.Logging.Fakes;
 
 public class StringBuilderLogger : ILogger
 {
-    private readonly StringBuilder _stringBuilder;
+    private readonly List<string> _logLines;
 
     public StringBuilderLogger()
     {
-        _stringBuilder = new StringBuilder();
+        _logLines = new List<string>();
     }
 
 
@@ -19,7 +18,9 @@ public class StringBuilderLogger : ILogger
     {
         state.ThrowIfNull();
 
-        _stringBuilder.AppendLine(state.ToString());
+        string? logLine = state.ToString();
+        logLine.ThrowIfNull();
+        _logLines.Add(logLine);
     }
 
     public bool IsEnabled(LogLevel logLevel)
@@ -32,8 +33,8 @@ public class StringBuilderLogger : ILogger
         return new DummyDisposable();
     }
 
-    public string Build()
+    public IReadOnlyCollection<string> Build()
     {
-        return _stringBuilder.ToString();
+        return _logLines;
     }
 }
