@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Kysect.CommonLib.FileSystem.Extensions;
+using Kysect.CommonLib.FileSystem;
 using System.IO.Abstractions.TestingHelpers;
 
 namespace Kysect.CommonLib.Tests.FileSystem;
