@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Kysect.CommonLib.DateAndTime;
 
-namespace Kysect.CommonLib.Tests;
+namespace Kysect.CommonLib.Tests.DateAndTime;
 
 public class DateTimeExtensionsTests
 {
