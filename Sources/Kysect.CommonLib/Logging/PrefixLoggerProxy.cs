@@ -15,6 +15,9 @@ public class PrefixLoggerProxy : ILogger
 
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
     {
+        if (!IsEnabled(logLevel))
+            return;
+
         _logger.Log(logLevel, eventId, PrepareMessage(state), exception, (s, e) => $"{PrepareMessage(formatter(state, e))}");
     }
 

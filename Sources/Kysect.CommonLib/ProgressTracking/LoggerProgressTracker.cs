@@ -21,7 +21,10 @@ public class LoggerProgressTracker : IProgressTracker
 
     public void OnUpdate()
     {
-        Interlocked.Increment(ref _value);
-        _logger.Log(_logLevel, "[{Operation}] Processed {Done}/{Max}", _operationName, _value, _maxValue);
+        lock (_logger)
+        {
+            _value++;
+            _logger.Log(_logLevel, "[{Operation}] Processed {Done}/{Max}", _operationName, _value, _maxValue);
+        }
     }
 }
