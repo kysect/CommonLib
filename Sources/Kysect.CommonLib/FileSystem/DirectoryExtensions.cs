@@ -1,32 +1,10 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
 using System.IO.Abstractions;
 
-namespace Kysect.CommonLib.FileSystem.Extensions;
+namespace Kysect.CommonLib.FileSystem;
 
 public static class DirectoryExtensions
 {
-    public static void EnsureParentDirectoryExists(string filePath)
-    {
-        filePath.ThrowIfNull();
-
-        var fileInfo = new FileInfo(filePath);
-        if (fileInfo.Directory is null)
-            throw new ArgumentException($"File {fileInfo.FullName} does not have directory");
-
-        EnsureDirectoryExists(fileInfo.Directory.FullName);
-    }
-
-    public static void EnsureDirectoryExists(string path)
-    {
-        if (path is null)
-            throw new ArgumentNullException(nameof(path));
-
-        if (Directory.Exists(path))
-            return;
-
-        Directory.CreateDirectory(path);
-    }
-
     public static void EnsureParentDirectoryExists(IFileSystem fileSystem, string path)
     {
         fileSystem.ThrowIfNull();
@@ -52,9 +30,17 @@ public static class DirectoryExtensions
         fileSystem.ThrowIfNull();
         directory.ThrowIfNull();
 
-        if (fileSystem.Directory.Exists(directory.FullName))
+        EnsureDirectoryExists(fileSystem, directory.FullName);
+    }
+
+    public static void EnsureDirectoryExists(IFileSystem fileSystem, string path)
+    {
+        fileSystem.ThrowIfNull();
+        path.ThrowIfNull();
+
+        if (fileSystem.Directory.Exists(path))
             return;
 
-        fileSystem.Directory.CreateDirectory(directory.FullName);
+        fileSystem.Directory.CreateDirectory(path);
     }
 }
