@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Kysect.CommonLib.Logging;
-using Kysect.CommonLib.Tests.Logging.Fakes;
+using Microsoft.Extensions.Logging;
 
 namespace Kysect.CommonLib.Tests.Logging;
 
@@ -11,7 +11,7 @@ public class LoggerTabExtensionTests
     [SetUp]
     public void Setup()
     {
-        _logger = new StringBuilderLogger();
+        _logger = new StringBuilderLogger(LogLevel.Trace);
     }
 
     [Test]

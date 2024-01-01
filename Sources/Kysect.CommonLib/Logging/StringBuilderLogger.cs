@@ -2,30 +2,36 @@
 using Kysect.CommonLib.Disposing;
 using Microsoft.Extensions.Logging;
 
-namespace Kysect.CommonLib.Tests.Logging.Fakes;
+namespace Kysect.CommonLib.Logging;
 
 public class StringBuilderLogger : ILogger
 {
     private readonly List<string> _logLines;
+    private readonly LogLevel _logLevel;
 
-    public StringBuilderLogger()
+    public StringBuilderLogger(LogLevel logLevel)
     {
+        _logLevel = logLevel;
         _logLines = new List<string>();
     }
 
-
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
     {
-        state.ThrowIfNull();
+        if (!IsEnabled(logLevel))
+        {
+            return;
+        }
 
-        string? logLine = state.ToString();
-        logLine.ThrowIfNull();
+        state.ThrowIfNull();
+        formatter.ThrowIfNull();
+
+        string logLine = formatter(state, exception);
         _logLines.Add(logLine);
     }
 
     public bool IsEnabled(LogLevel logLevel)
     {
-        return true;
+        return _logLevel <= logLevel;
     }
 
     public IDisposable? BeginScope<TState>(TState state) where TState : notnull
