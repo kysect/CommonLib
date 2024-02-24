@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Kysect.CommonLib.Logging;
 
-public class StringBuilderLogger : ILogger
+public class StringBuilderLogger<T> : ILogger<T>
 {
     private readonly List<string> _logLines;
     private readonly LogLevel _logLevel;

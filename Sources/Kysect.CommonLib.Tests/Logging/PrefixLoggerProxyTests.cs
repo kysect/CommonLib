@@ -6,12 +6,12 @@ namespace Kysect.CommonLib.Tests.Logging;
 
 public class PrefixLoggerProxyTests
 {
-    private StringBuilderLogger _logger;
+    private StringBuilderLogger<PrefixLoggerProxyTests> _logger;
 
     [SetUp]
     public void Setup()
     {
-        _logger = new StringBuilderLogger(LogLevel.Trace);
+        _logger = new StringBuilderLogger<PrefixLoggerProxyTests>(LogLevel.Trace);
     }
 
     [Test]

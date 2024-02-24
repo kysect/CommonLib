@@ -8,13 +8,13 @@ namespace Kysect.CommonLib.Tests.ProgressTracking;
 public class CollectionProgressTrackerTests
 {
     private LoggerProgressTrackerFactory _loggerProgressTrackerFactory;
-    private StringBuilderLogger _stringBuilderLogger;
+    private StringBuilderLogger<CollectionProgressTrackerTests> _stringBuilderLogger;
 
     [SetUp]
     public void Setup()
     {
         var logLevel = LogLevel.Trace;
-        _stringBuilderLogger = new StringBuilderLogger(logLevel);
+        _stringBuilderLogger = new StringBuilderLogger<CollectionProgressTrackerTests>(logLevel);
         _loggerProgressTrackerFactory = new LoggerProgressTrackerFactory(_stringBuilderLogger, logLevel);
     }
 
