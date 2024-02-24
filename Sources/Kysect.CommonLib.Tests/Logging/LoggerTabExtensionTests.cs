@@ -6,12 +6,12 @@ namespace Kysect.CommonLib.Tests.Logging;
 
 public class LoggerTabExtensionTests
 {
-    private StringBuilderLogger _logger;
+    private StringBuilderLogger<LoggerTabExtensionTests> _logger;
 
     [SetUp]
     public void Setup()
     {
-        _logger = new StringBuilderLogger(LogLevel.Trace);
+        _logger = new StringBuilderLogger<LoggerTabExtensionTests>(LogLevel.Trace);
     }
 
     [Test]
