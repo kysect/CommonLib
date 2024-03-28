@@ -24,4 +24,12 @@ public static class CollectionExtensions
             .ToList()
             .ForEach(action);
     }
+
+    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> values)
+    {
+        return values
+            .Where(v => v is not null)
+            .Select(v => v!)
+            .ToList();
+    }
 }
