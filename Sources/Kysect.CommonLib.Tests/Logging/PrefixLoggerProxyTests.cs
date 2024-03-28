@@ -6,15 +6,14 @@ namespace Kysect.CommonLib.Tests.Logging;
 
 public class PrefixLoggerProxyTests
 {
-    private StringBuilderLogger<PrefixLoggerProxyTests> _logger;
+    private readonly StringBuilderLogger<PrefixLoggerProxyTests> _logger;
 
-    [SetUp]
-    public void Setup()
+    public PrefixLoggerProxyTests()
     {
         _logger = new StringBuilderLogger<PrefixLoggerProxyTests>(LogLevel.Trace);
     }
 
-    [Test]
+    [Fact]
     public void WithPrefix_WriteString_ReturnStringWithPrefix()
     {
         ILogger logger = _logger.WithPrefix("Prefix");
@@ -26,7 +25,7 @@ public class PrefixLoggerProxyTests
             .And.Subject.Single().Should().Be("[Prefix] Message");
     }
 
-    [Test]
+    [Fact]
     public void WithPrefixGeneric_WriteString_ReturnStringWithPrefix()
     {
         ILogger logger = _logger.WithPrefix<PrefixLoggerProxyTests>();

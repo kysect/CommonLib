@@ -2,7 +2,7 @@
 using Kysect.CommonLib.BaseTypes.Extensions;
 using Kysect.CommonLib.Exceptions;
 
-namespace Kysect.CommonLib.Tests;
+namespace Kysect.CommonLib.Tests.Exceptions;
 
 public class SwitchDefaultExceptionsTests
 {
@@ -11,11 +11,11 @@ public class SwitchDefaultExceptionsTests
         Value1
     }
 
-    [Test]
-    [TestCase("Some String")]
-    [TestCase(Sample.Value1)]
-    [TestCase(123)]
-    [TestCase(null)]
+    [Theory]
+    [InlineData("Some String")]
+    [InlineData(Sample.Value1)]
+    [InlineData(123)]
+    [InlineData(null)]
     public void OnUnexpectedValue_WithSpecifiedArgumentName_ReturnCorrectException(object? value)
     {
         string message = $"Value {value} is not expected (Parameter 'argumentName')";
@@ -25,11 +25,11 @@ public class SwitchDefaultExceptionsTests
         actual.Message.Should().Be(message);
     }
 
-    [Test]
-    [TestCase("Some String")]
-    [TestCase(Sample.Value1)]
-    [TestCase(123)]
-    [TestCase(null)]
+    [Theory]
+    [InlineData("Some String")]
+    [InlineData(Sample.Value1)]
+    [InlineData(123)]
+    [InlineData(null)]
     public void OnUnexpectedValue_WithoutSpecifiedArgumentName_ReturnCorrectException(object? value)
     {
         string message = $"Value {value} is not expected (Parameter 'value')";
@@ -39,10 +39,10 @@ public class SwitchDefaultExceptionsTests
         actual.Message.Should().Be(message);
     }
 
-    [Test]
-    [TestCase("Some String")]
-    [TestCase(Sample.Value1)]
-    [TestCase(123)]
+    [Theory]
+    [InlineData("Some String")]
+    [InlineData(Sample.Value1)]
+    [InlineData(123)]
     public void OnUnexpectedType_WithoutSpecifiedArgumentName_ReturnCorrectException(object value)
     {
         value.ThrowIfNull();
@@ -54,8 +54,8 @@ public class SwitchDefaultExceptionsTests
         actual.Message.Should().Be(message);
     }
 
-    [Test]
-    [TestCase(null)]
+    [Theory]
+    [InlineData(null)]
     public void OnUnexpectedType_ForNull_ReturnCorrectException(object? value)
     {
         string message = $"Null value is not expected (Parameter 'value')";

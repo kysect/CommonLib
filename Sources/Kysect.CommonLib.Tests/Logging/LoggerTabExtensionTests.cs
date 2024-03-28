@@ -6,15 +6,14 @@ namespace Kysect.CommonLib.Tests.Logging;
 
 public class LoggerTabExtensionTests
 {
-    private StringBuilderLogger<LoggerTabExtensionTests> _logger;
+    private readonly StringBuilderLogger<LoggerTabExtensionTests> _logger;
 
-    [SetUp]
-    public void Setup()
+    public LoggerTabExtensionTests()
     {
         _logger = new StringBuilderLogger<LoggerTabExtensionTests>(LogLevel.Trace);
     }
 
-    [Test]
+    [Fact]
     public void LogTabTrace_ReturnExpectedString()
     {
         _logger.LogTabTrace(1, "Message");
@@ -22,7 +21,7 @@ public class LoggerTabExtensionTests
         _logger.Build().Should().BeEquivalentTo(["\tMessage"]);
     }
 
-    [Test]
+    [Fact]
     public void LogTabDebug_ReturnExpectedString()
     {
         _logger.LogTabDebug(1, "Message");
@@ -30,7 +29,7 @@ public class LoggerTabExtensionTests
         _logger.Build().Should().BeEquivalentTo(["\tMessage"]);
     }
 
-    [Test]
+    [Fact]
     public void LogTabInformation_ReturnExpectedString()
     {
         _logger.LogTabInformation(1, "Message");
@@ -38,7 +37,7 @@ public class LoggerTabExtensionTests
         _logger.Build().Should().BeEquivalentTo(["\tMessage"]);
     }
 
-    [Test]
+    [Fact]
     public void LogTabWarning_ReturnExpectedString()
     {
         _logger.LogTabWarning(1, "Message");
@@ -46,7 +45,7 @@ public class LoggerTabExtensionTests
         _logger.Build().Should().BeEquivalentTo(["\tMessage"]);
     }
 
-    [Test]
+    [Fact]
     public void LogTabError_ReturnExpectedString()
     {
         _logger.LogTabError(1, "Message");
@@ -54,7 +53,7 @@ public class LoggerTabExtensionTests
         _logger.Build().Should().BeEquivalentTo(["\tMessage"]);
     }
 
-    [Test]
+    [Fact]
     public void LogTabCritical_ReturnExpectedString()
     {
         _logger.LogTabCritical(1, "Message");

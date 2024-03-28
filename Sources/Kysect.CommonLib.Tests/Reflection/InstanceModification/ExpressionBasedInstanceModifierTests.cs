@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Kysect.CommonLib.Reflection;
 
 namespace Kysect.CommonLib.Tests.Reflection.InstanceModification;
@@ -14,7 +15,7 @@ public class ExpressionBasedInstanceModifierTests
         }
     }
 
-    [Test]
+    [Fact]
     public void ModifyProperty_WithValue_SetValueToProperty()
     {
         var expressionBasedInstanceModifier = new ExpressionBasedInstanceModifier();
@@ -23,6 +24,6 @@ public class ExpressionBasedInstanceModifierTests
 
         expressionBasedInstanceModifier.ModifyProperty(testType, i => i.Value, newValue);
 
-        Assert.That(testType.Value, Is.EqualTo(newValue));
+        testType.Value.Should().Be(newValue);
     }
 }

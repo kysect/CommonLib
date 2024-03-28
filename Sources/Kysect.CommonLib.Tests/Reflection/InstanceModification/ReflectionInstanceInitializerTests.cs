@@ -7,7 +7,7 @@ public class ReflectionInstanceInitializerTests
 {
     public record TypeForInitialized(string Value1, int Value2);
 
-    [Test]
+    [Fact]
     public void ReflectionInstanceInitializer_ForInitializedInstance_ReturnExpectedValues()
     {
         var expected = new TypeForInitialized("Value", 1);

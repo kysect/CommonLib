@@ -6,7 +6,7 @@ namespace Kysect.CommonLib.Tests.Reflection.TypeCache;
 
 public class TypeInstanceCacheElementTests
 {
-    [Test]
+    [Fact]
     public void CreateEmptyInstance_ForSimpleType_ReturnExpectedValue()
     {
         int emptyInstance = TypeInstanceCache<int>.CreateEmptyInstance();
@@ -14,7 +14,7 @@ public class TypeInstanceCacheElementTests
         emptyInstance.Should().Be(0);
     }
 
-    [Test]
+    [Fact]
     public void CreateEmptyInstance_ForInterface_ThrowException()
     {
         Assert.Throws<ReflectionException>(() =>
