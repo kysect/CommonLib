@@ -5,7 +5,7 @@ namespace Kysect.CommonLib.FileSystem;
 
 public static class DirectoryExtensions
 {
-    public static void EnsureParentDirectoryExists(IFileSystem fileSystem, string path)
+    public static void EnsureParentDirectoryExists(this IFileSystem fileSystem, string path)
     {
         fileSystem.ThrowIfNull();
         path.ThrowIfNull();
@@ -14,7 +14,7 @@ public static class DirectoryExtensions
         EnsureParentDirectoryExists(fileSystem, fileInfo);
     }
 
-    public static void EnsureParentDirectoryExists(IFileSystem fileSystem, IFileInfo file)
+    public static void EnsureParentDirectoryExists(this IFileSystem fileSystem, IFileInfo file)
     {
         fileSystem.ThrowIfNull();
         file.ThrowIfNull();
@@ -25,7 +25,7 @@ public static class DirectoryExtensions
         EnsureDirectoryExists(fileSystem, file.Directory);
     }
 
-    public static void EnsureDirectoryExists(IFileSystem fileSystem, IDirectoryInfo directory)
+    public static void EnsureDirectoryExists(this IFileSystem fileSystem, IDirectoryInfo directory)
     {
         fileSystem.ThrowIfNull();
         directory.ThrowIfNull();
@@ -33,7 +33,7 @@ public static class DirectoryExtensions
         EnsureDirectoryExists(fileSystem, directory.FullName);
     }
 
-    public static void EnsureDirectoryExists(IFileSystem fileSystem, string path)
+    public static void EnsureDirectoryExists(this IFileSystem fileSystem, string path)
     {
         fileSystem.ThrowIfNull();
         path.ThrowIfNull();
