@@ -5,7 +5,7 @@ namespace Kysect.CommonLib.Tests.DateAndTime;
 
 public class DateTimeExtensionsTests
 {
-    [Test]
+    [Fact]
     public void ToOrderedShortString_ReturnExpectedResult()
     {
         var value = new DateTime(2023, 1, 2, 3, 4, 5);
@@ -16,7 +16,7 @@ public class DateTimeExtensionsTests
         result.Should().Be(expected);
     }
 
-    [Test]
+    [Fact]
     public void ToOrderedFullString_ReturnExpectedResult()
     {
         var value = new DateTime(2023, 1, 2, 3, 4, 5);

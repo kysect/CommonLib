@@ -12,7 +12,7 @@ public class ReflectionJsonInstanceCreatorTests
         _instanceCreator = ReflectionJsonInstanceCreator.Create();
     }
 
-    [Test]
+    [Fact]
     public void InstanceCreator_CreateFromDictionary_ReturnExpectedValues()
     {
         var instance = new SomeType(1, "Name");
@@ -26,7 +26,7 @@ public class ReflectionJsonInstanceCreatorTests
 
         result.Should().NotBeNull();
         result.Should().Be(instance);
-        Assert.That(result, Is.EqualTo(instance));
+        result.Should().Be(instance);
     }
 
     public record SomeType(int Id, string Name);

@@ -6,15 +6,14 @@ namespace Kysect.CommonLib.Tests.FileSystem;
 
 public class DirectoryExtensionsTests
 {
-    private MockFileSystem _fileSystem;
+    private readonly MockFileSystem _fileSystem;
 
-    [SetUp]
-    public void Setup()
+    public DirectoryExtensionsTests()
     {
         _fileSystem = new MockFileSystem();
     }
 
-    [Test]
+    [Fact]
     public void EnsureParentDirectoryExists_ForNonExistingDirectory_CreateDirectory()
     {
         const string directoryPath = "Dir";

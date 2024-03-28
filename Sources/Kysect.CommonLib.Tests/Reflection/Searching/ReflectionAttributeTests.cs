@@ -31,7 +31,7 @@ public class ReflectionAttributeTests
         Process = 1
     }
 
-    [Test]
+    [Fact]
     public void AttributeChecker_ForGenericAttribute_ReturnAttribute()
     {
         Attribute? customAttribute = _reflectionAttributeFinder.GetAttributeFromType<TestFakeAttribute<DayOfWeek>>(TypeInstanceCache<SomeTestType>.Instance);
@@ -39,10 +39,10 @@ public class ReflectionAttributeTests
         customAttribute.Should().NotBeNull();
     }
 
-    [Test]
+    [Fact]
     public void AttributeChecker_ForTypeWithoutAttribute_ReturnFalse()
     {
-        bool hasAttribute = _reflectionAttributeFinder.HasAttribute<AuthorAttribute>(TypeInstanceCache<object>.Instance);
+        bool hasAttribute = _reflectionAttributeFinder.HasAttribute<CLSCompliantAttribute>(TypeInstanceCache<object>.Instance);
 
         hasAttribute.Should().BeFalse();
     }

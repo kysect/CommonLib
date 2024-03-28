@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
 using Kysect.CommonLib.BaseTypes.Extensions;
 
-namespace Kysect.CommonLib.Tests;
+namespace Kysect.CommonLib.Tests.BaseTypes;
 
 public class GenericExtensionsTests
 {
-    [Test]
+    [Fact]
     public void ThrowIfNull_ShouldThrowExceptionWithCorrectMessage()
     {
         int? myVariableName = null;

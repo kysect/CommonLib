@@ -5,7 +5,7 @@ namespace Kysect.CommonLib.Tests.DependencyInjection;
 
 public class DefaultLoggerConfigurationTests
 {
-    [Test]
+    [Fact]
     public void CreateLogger_Ok()
     {
         ILogger consoleLogger = DefaultLoggerConfiguration.CreateConsoleLogger(logLevel: LogLevel.Debug);

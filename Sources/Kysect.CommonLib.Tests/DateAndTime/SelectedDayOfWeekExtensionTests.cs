@@ -5,7 +5,7 @@ namespace Kysect.CommonLib.Tests.DateAndTime;
 
 public class SelectedDayOfWeekExtensionTests
 {
-    [Test]
+    [Fact]
     public void Contains_ForAllValues_ReturnCorrectMapping()
     {
         foreach (DayOfWeek dayOfWeek in Enum.GetValues<DayOfWeek>())

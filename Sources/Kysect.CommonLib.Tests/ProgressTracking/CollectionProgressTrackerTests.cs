@@ -7,18 +7,17 @@ namespace Kysect.CommonLib.Tests.ProgressTracking;
 
 public class CollectionProgressTrackerTests
 {
-    private LoggerProgressTrackerFactory _loggerProgressTrackerFactory;
-    private StringBuilderLogger<CollectionProgressTrackerTests> _stringBuilderLogger;
+    private readonly LoggerProgressTrackerFactory _loggerProgressTrackerFactory;
+    private readonly StringBuilderLogger<CollectionProgressTrackerTests> _stringBuilderLogger;
 
-    [SetUp]
-    public void Setup()
+    public CollectionProgressTrackerTests()
     {
         var logLevel = LogLevel.Trace;
         _stringBuilderLogger = new StringBuilderLogger<CollectionProgressTrackerTests>(logLevel);
         _loggerProgressTrackerFactory = new LoggerProgressTrackerFactory(_stringBuilderLogger, logLevel);
     }
 
-    [Test]
+    [Fact]
     public void Select_ForThreeElement_GenerateThreeRow()
     {
         var collectionProgressTracker = new CollectionProgressTracker<int>(_loggerProgressTrackerFactory, [1, 2, 3]);
@@ -29,7 +28,7 @@ public class CollectionProgressTrackerTests
         _stringBuilderLogger.Build().Should().BeEquivalentTo(["[Select] Processed 1/3", "[Select] Processed 2/3", "[Select] Processed 3/3"]);
     }
 
-    [Test]
+    [Fact]
     public void SelectParallel_ForThreeElement_GenerateThreeRow()
     {
         var collectionProgressTracker = new CollectionProgressTracker<int>(_loggerProgressTrackerFactory, [1, 2, 3]);
@@ -40,7 +39,7 @@ public class CollectionProgressTrackerTests
         _stringBuilderLogger.Build().Should().BeEquivalentTo(["[Select] Processed 1/3", "[Select] Processed 2/3", "[Select] Processed 3/3"]);
     }
 
-    [Test]
+    [Fact]
     public void SelectMany_ForThreeElement_GenerateThreeRow()
     {
         var collectionProgressTracker = new CollectionProgressTracker<int>(_loggerProgressTrackerFactory, [1, 2, 3]);
@@ -51,7 +50,7 @@ public class CollectionProgressTrackerTests
         _stringBuilderLogger.Build().Should().BeEquivalentTo(["[Select] Processed 1/3", "[Select] Processed 2/3", "[Select] Processed 3/3"]);
     }
 
-    [Test]
+    [Fact]
     public void SelectManyParallel_ForThreeElement_GenerateThreeRow()
     {
         var collectionProgressTracker = new CollectionProgressTracker<int>(_loggerProgressTrackerFactory, [1, 2, 3]);
@@ -62,7 +61,7 @@ public class CollectionProgressTrackerTests
         _stringBuilderLogger.Build().Should().BeEquivalentTo(["[Select] Processed 1/3", "[Select] Processed 2/3", "[Select] Processed 3/3"]);
     }
 
-    [Test]
+    [Fact]
     public void Where_ForThreeElement_GenerateThreeRow()
     {
         var collectionProgressTracker = new CollectionProgressTracker<int>(_loggerProgressTrackerFactory, [1, 2, 3]);
@@ -73,7 +72,7 @@ public class CollectionProgressTrackerTests
         _stringBuilderLogger.Build().Should().BeEquivalentTo(["[Select] Processed 1/3", "[Select] Processed 2/3", "[Select] Processed 3/3"]);
     }
 
-    [Test]
+    [Fact]
     public void ApplyParallel_ForThreeElement_GenerateThreeRow()
     {
         var collectionProgressTracker = new CollectionProgressTracker<int>(_loggerProgressTrackerFactory, [1, 2, 3]);

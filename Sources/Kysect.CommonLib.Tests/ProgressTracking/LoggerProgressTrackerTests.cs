@@ -7,18 +7,16 @@ namespace Kysect.CommonLib.Tests.ProgressTracking;
 
 public class LoggerProgressTrackerTests
 {
-    private LoggerProgressTrackerFactory _loggerProgressTrackerFactory;
-    private StringBuilderLogger<LoggerProgressTrackerTests> _stringBuilderLogger;
-
-    [SetUp]
-    public void Setup()
+    private readonly LoggerProgressTrackerFactory _loggerProgressTrackerFactory;
+    private readonly StringBuilderLogger<LoggerProgressTrackerTests> _stringBuilderLogger;
+    public LoggerProgressTrackerTests()
     {
         var logLevel = LogLevel.Trace;
         _stringBuilderLogger = new StringBuilderLogger<LoggerProgressTrackerTests>(logLevel);
         _loggerProgressTrackerFactory = new LoggerProgressTrackerFactory(_stringBuilderLogger, logLevel);
     }
 
-    [Test]
+    [Fact]
     public void OnUpdate_ThreeCalls_GenerateThreeLogLine()
     {
         IProgressTracker progressTracker = _loggerProgressTrackerFactory.Create("Operation name", 3);

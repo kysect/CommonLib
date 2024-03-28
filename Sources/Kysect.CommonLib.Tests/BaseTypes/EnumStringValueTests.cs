@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Kysect.CommonLib.BaseTypes;
 
-namespace Kysect.CommonLib.Tests;
+namespace Kysect.CommonLib.Tests.BaseTypes;
 
 public class EnumStringValueTests
 {
@@ -14,9 +14,9 @@ public class EnumStringValueTests
         SecondValue,
     }
 
-    [Test]
-    [TestCase(TestType.FirstValue, "First value")]
-    [TestCase(TestType.SecondValue, "2 value")]
+    [Theory]
+    [InlineData(TestType.FirstValue, "First value")]
+    [InlineData(TestType.SecondValue, "2 value")]
     public void ToEnumStringAndBack_ShouldReturnCorrectValue(TestType enumValue, string stringValue)
     {
         string actualStringValue = EnumStringValue.ToEnumString(enumValue);

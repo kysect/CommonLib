@@ -37,7 +37,7 @@ public class CollectionDiffTests
         }
     }
 
-    [Test]
+    [Fact]
     public void Create_ForAdded_ReturnExpected()
     {
         var added = new TestContainer(1);
@@ -58,7 +58,7 @@ public class CollectionDiffTests
         diff.Same.Should().BeEmpty();
     }
 
-    [Test]
+    [Fact]
     public void Create_ForRemoved_ReturnExpected()
     {
         var removed = new TestContainer(1);
@@ -79,7 +79,7 @@ public class CollectionDiffTests
         diff.Same.Should().BeEmpty();
     }
 
-    [Test]
+    [Fact]
     public void Create_ForSame_ReturnExpected()
     {
         var leftElement = new TestContainer(1);
