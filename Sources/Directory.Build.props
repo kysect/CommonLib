@@ -29,7 +29,10 @@
 
   <ItemGroup>
     <PackageReference Include="Kysect.Editorconfig" />
-    <None Include="$(SolutionDir)..\Images\Kysect-logo.png" Pack="true" PackagePath="" />
-    <None Include="$(SolutionDir)..\README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(Configuration) == 'Release'">
+    <None Include="$(SolutionDir)..\Images\Kysect-logo.png" Pack="true" PackagePath="/" />
+    <None Include="$(SolutionDir)..\README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 </Project>

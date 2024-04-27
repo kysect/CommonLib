@@ -3,7 +3,6 @@
     <Title>Kysect.CommonLib.DependencyInjection</Title>
     <Description>Common lib for Kysect projects.</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 
