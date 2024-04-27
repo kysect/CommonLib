@@ -1,35 +1,35 @@
 <Project>
-    <!-- Default project values -->
-    <PropertyGroup>
-        <Authors>Kysect</Authors>
-        <Company>Kysect</Company>
-        <PackageIcon>Kysect-logo.png</PackageIcon>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Copyright>Copyright (c) Kysect 2023</Copyright>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <RepositoryType>git</RepositoryType>
-    </PropertyGroup>
+  <!-- Default project values -->
+  <PropertyGroup>
+    <Authors>Kysect</Authors>
+    <Company>Kysect</Company>
+    <PackageIcon>Kysect-logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Copyright>Copyright (c) Kysect 2023</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
 
-    <!-- Specific project values -->
-    <PropertyGroup>
-        <RepositoryUrl>https://github.com/kysect/Kysect.CommonLib</RepositoryUrl>
-        <PackageProjectUrl>https://github.com/kysect/Kysect.CommonLib</PackageProjectUrl>
-        <Version>0.1.20</Version>
-    </PropertyGroup>
+  <!-- Specific project values -->
+  <PropertyGroup>
+    <RepositoryUrl>https://github.com/kysect/Kysect.CommonLib</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/kysect/Kysect.CommonLib</PackageProjectUrl>
+    <Version>0.1.20</Version>
+  </PropertyGroup>
 
-    <!-- Code configuration -->
-    <PropertyGroup>
-        <LangVersion>latest</LangVersion>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <UseArtifactsOutput>true</UseArtifactsOutput>
-        <DebugType>portable</DebugType>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    </PropertyGroup>
+  <!-- Code configuration -->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <DebugType>portable</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Kysect.Editorconfig" />
-        <None Include="$(SolutionDir)..\Images\Kysect-logo.png" Pack="true" PackagePath="" />
-        <None Include="$(SolutionDir)..\README.md" Pack="true" PackagePath="" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Kysect.Editorconfig" />
+    <None Include="$(SolutionDir)..\Images\Kysect-logo.png" Pack="true" PackagePath="" />
+    <None Include="$(SolutionDir)..\README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
 </Project>
