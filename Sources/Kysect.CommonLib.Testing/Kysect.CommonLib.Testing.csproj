@@ -5,4 +5,13 @@
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="TestableIO.System.IO.Abstractions.TestingHelpers" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kysect.CommonLib.DependencyInjection\Kysect.CommonLib.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Kysect.CommonLib\Kysect.CommonLib.csproj" />
+  </ItemGroup>
+
 </Project>
