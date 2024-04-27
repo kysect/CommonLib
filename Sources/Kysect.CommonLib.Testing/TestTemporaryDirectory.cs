@@ -67,6 +67,6 @@ public class TestTemporaryDirectory : IDisposable
 
     private string GetRandomDirectoryName()
     {
-        return Guid.NewGuid().ToString().Substring(8);
+        return Guid.NewGuid().ToString().Substring(0, 8);
     }
 }

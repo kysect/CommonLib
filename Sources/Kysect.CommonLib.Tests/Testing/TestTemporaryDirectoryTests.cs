@@ -12,10 +12,13 @@ public class TestTemporaryDirectoryTests
     [Fact]
     public void GetTemporaryDirectory_ReturnStringDoNotLong()
     {
-        using var temporaryDirectory = new TestTemporaryDirectory(new System.IO.Abstractions.FileSystem());
+        var fileSystem = new System.IO.Abstractions.FileSystem();
+        string baseDirectoryPath = fileSystem.Path.GetFullPath(".");
+        using var temporaryDirectory = new TestTemporaryDirectory(fileSystem);
 
         string directoryPath = temporaryDirectory.GetTemporaryDirectory();
+        int additionalLength = directoryPath.Length - baseDirectoryPath.Length;
 
-        directoryPath.Length.Should().BeLessThan(150);
+        additionalLength.Should().BeLessThan(25);
     }
 }
