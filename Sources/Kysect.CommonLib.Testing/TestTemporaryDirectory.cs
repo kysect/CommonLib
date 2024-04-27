@@ -14,7 +14,7 @@ public class TestTemporaryDirectory : IDisposable
         _fileSystem = fileSystem.ThrowIfNull();
         rootPath.ThrowIfNull();
 
-        string path = _fileSystem.Path.Combine(rootPath, "TempDirectory", Guid.NewGuid().ToString());
+        string path = _fileSystem.Path.Combine(rootPath, "Temp", GetRandomDirectoryName());
 
         if (_fileSystem.Directory.Exists(path))
         {
@@ -28,7 +28,7 @@ public class TestTemporaryDirectory : IDisposable
 
     public string GetTemporaryDirectory()
     {
-        return _fileSystem.Path.Combine(_directoryInfo.FullName, Guid.NewGuid().ToString());
+        return _fileSystem.Path.Combine(_directoryInfo.FullName, GetRandomDirectoryName());
     }
 
     public void Dispose()
@@ -63,5 +63,10 @@ public class TestTemporaryDirectory : IDisposable
 
 
         target.Delete();
+    }
+
+    private string GetRandomDirectoryName()
+    {
+        return Guid.NewGuid().ToString().Substring(0, 8);
     }
 }
