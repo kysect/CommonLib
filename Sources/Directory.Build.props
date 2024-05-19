@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RepositoryUrl>https://github.com/kysect/Kysect.CommonLib</RepositoryUrl>
     <PackageProjectUrl>https://github.com/kysect/Kysect.CommonLib</PackageProjectUrl>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!-- Code configuration -->
@@ -16,8 +17,8 @@
 
   <ItemGroup>
     <PackageReference Include="Kysect.SolutionDefaults">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MinVer">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
